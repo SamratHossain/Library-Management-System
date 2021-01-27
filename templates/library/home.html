@@ -1,0 +1,26 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <div class="heading">
+        <h2> INSTITUTE OF SCIENCE AND TECHNOLOGY</h2>
+    </div>
+    <div class="row">
+        <div class="col-4 my-col">
+            <h4>TOTAL STUDENT</h4>
+            <h1>{{ total_students }}</h1>
+        </div>
+        <div class="col-4 my-col">
+            <h4>TOTAL BOOKS</h4>
+            <h1>{{ total_books }}</h1>
+        </div>
+        <div class="col-4 my-col">
+            <h4>TOTAL ISSUED BOOKS</h4>
+            <h1>{{ total_issue_book }}</h1>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

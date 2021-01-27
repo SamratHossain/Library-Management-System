@@ -1,0 +1,66 @@
+{% extends 'library/base.html' %}
+
+{% block body %}
+
+
+{% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+<div class="title container bg-green">
+    <h2> Search Result </h2>
+</div>
+
+<hr>
+
+{% if student %}
+<div class="container">
+    <div class="info-table mt-5">
+    <table class="table table-striped">
+    <thead class="bg">
+        <th>Issue ID</th>
+        <th>Book Name</th>
+        <th>ISBN Number</th>
+        <th>Student Name</th>
+        <th>Student ID</th>
+        <th>Issue Date</th>
+        <th>Return Date</th>
+        <th>Action</th>
+    </thead>
+
+    <tbody>
+        <td>{{ student.id }}</td>
+        <td>{{ student.BookName }}</td>
+        <td>{{ student.ISBN_Number }}</td>
+        <td>{{ student.StudentName }}</td>
+        <td>{{ student.StudentID }}</td>
+        <td>{{ student.issue_date }}</td>
+        <td>{{ student.return_date }}</td>
+        <td>
+            <a class="btn btn-danger" href="{% url 'home:fine' student.id %}">Fine</a>
+            <a class="btn btn-primary" href="{% url 'home:returnbook' student.id %}">Return</a>
+        </td>
+        
+    </tbody>
+</table>
+</div>
+</div>
+
+{% else %}
+
+<div class="not-found">
+    <h2>Student Not Found</h2>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
+

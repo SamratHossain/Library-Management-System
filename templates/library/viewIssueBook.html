@@ -1,0 +1,76 @@
+{% extends 'library/base.html' %}
+
+{% block body %}
+
+
+{% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+<div class="title container bg-green">
+    <h2> Issued Book Information </h2>
+</div>
+
+<div class="search">
+<nav class="navbar navbar-light">
+  <div class="container-fluid">
+    <form class="d-flex" action="{% url 'home:SearchIssueBook' %}" method="GET">
+      <input class="form-control me-2" type="search" name="query-student" placeholder="Search Student By ID" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <div class="info-table">
+    <table class="table table-striped">
+    <thead class="bg">
+        <th>Issue ID</th>
+        <th>Book Name</th>
+        <th>ISBN Number</th>
+        <th>Student Name</th>
+        <th>Student ID</th>
+        <th>Issue Date</th>
+        <th>Return Date</th>
+        <th>Action</th>
+    </thead>
+    {% for issuebook in page_obj %}
+    <tbody>
+        <td>{{ issuebook.id }}</td>
+        <td>{{ issuebook.BookName }}</td>
+        <td>{{ issuebook.ISBN_Number }}</td>
+        <td>{{ issuebook.StudentName }}</td>
+        <td>{{ issuebook.StudentID }}</td>
+        <td>{{ issuebook.issue_date }}</td>
+        <td>{{ issuebook.return_date }}</td>
+        <td>
+            <a class="btn btn-danger" href="{% url 'home:fine' issuebook.id %}">Fine</a>
+            <a class="btn btn-primary" href="{% url 'home:returnbook' issuebook.id %}">Return</a>
+        </td>
+        
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+</div>
+
+<div class="page mt-3 mb-5">
+  {% if page_obj.has_previous %}
+    <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% if page_obj.has_next %}
+    <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+</div>
+
+{% endblock %}
+

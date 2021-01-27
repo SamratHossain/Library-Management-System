@@ -1,0 +1,64 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="title">
+    <h2>Issue New Book</h2>
+</div>
+
+{% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+<section class="">
+<div class="form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="">Student Name:</label>
+            <select class="form-control mb-3" name="StudentName">
+                {% for student in students %}
+                <option value="{{ student.studentName }}">({{ student.id }}){{ student.studentName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="">Student ID:</label>
+            <select class="form-control mb-3" name="StudentID">
+                {% for student in students %}
+                <option value="{{ student.id }}">{{ student.id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+           <label for="">Book:</label>
+           <select class="form-control mb-3" class="form-select" name="BookName">
+                {% for book in books %}
+                <option value="{{ book.bookName }}">({{ book.id }}){{ book.bookName }}</option>
+                {% endfor %}
+            </select>     
+        </div>
+            <label for="">ISBN:</label>
+           <select class="form-control mb-3" name="ISBN_Number">
+                {% for book in books %}
+                <option value="{{ book.isbnNumber }}">({{ book.id }}){{ book.isbnNumber }}</option>
+                {% endfor %}
+            </select>    
+        <div>
+            <input class="btn btn-primary mb-3" type="submit" value="Submit">
+        </div>
+    
+    </form>
+</div>
+</section>
+
+
+{% endblock %}

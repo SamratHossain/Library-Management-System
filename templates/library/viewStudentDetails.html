@@ -1,0 +1,72 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="title">
+
+    <h2>Student Information</h2>
+
+</div>
+
+<div class="search">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex" action="{% url 'home:SearchStudent' %}" method="GET">
+      <input class="form-control me-2" type="search" name="query-student" placeholder="Search Student By ID" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+</div>
+
+{% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+<div class="container">
+  <div class="info-table">
+    <table class="table table-striped">
+    <thead class="bg">
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Roll No</th>
+        <th>Department Name</th>
+        <th>Session</th>
+        <th>Action</th>
+    </thead>
+    {% for student in page_obj %}
+    <tbody>
+        <td>{{ student.id }}</td>
+        <td>{{ student.studentName }}</td>
+        <td>{{ student.rollNo }}</td>
+        <td>{{ student.departmentName }}</td>
+        <td>{{ student.session }}</td>
+        <td>
+            <a class="btn btn-success" href="{% url 'home:updateStudentDetails' student_id=student.id %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'home:deletStudentDetails' student_id=student.id %}">Delete</a>
+        </td>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+</div>
+
+<div class="page mt-3 mb-5">
+  {% if page_obj.has_previous %}
+    <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% if page_obj.has_next %}
+    <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+</div>
+
+{% endblock %}

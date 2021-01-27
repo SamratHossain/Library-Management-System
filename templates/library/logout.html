@@ -1,0 +1,12 @@
+{% extends 'library/base.html' %}
+
+{% block body %}
+
+<div class="logout">
+    <div class="logout-info">
+        <h5>Your are Succesfully Logged Out</h2>
+        <a class="btn btn-success mt-3" href="{% url 'home:login' %}">Login Again</a>
+    </div>
+</div>
+
+{% endblock body %}

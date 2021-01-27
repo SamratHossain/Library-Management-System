@@ -1,0 +1,62 @@
+{% extends 'library/base.html' %}
+
+{% block body %}
+
+{% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+<div class="title">
+    <h2>Update Book Information</h2>
+</div>
+
+<section class="">
+<div class="form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            Book Name:
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="bookName" value="{{ updateBook.bookName }}">
+        </div>
+        <div>
+            <label for="">Author Name:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="authorName" value="{{ updateBook.authorName }}">
+        </div>
+        <div>
+            <label for="">Category:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="category" value="{{ updateBook.category }}">
+        </div>
+        <div>
+            <label for="">ISBN Number:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="isbnNumber" value="{{ updateBook.isbnNumber }}">
+        </div>
+        <div>
+            <label for="">Quantity:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="number" name="quantity" value="{{ updateBook.quantity }}">
+        </div>
+        <div>
+            <input class="btn btn-primary mb-3" type="submit" value="Submit">
+        </div>
+    
+    </form>
+</div>
+</section>
+
+{% endblock %}

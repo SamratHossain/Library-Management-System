@@ -1,0 +1,60 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block body %}
+
+    {% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+
+<div class="title">
+<h2>Update Student Information</h2>
+</div>
+
+<section class="">
+<div class="form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="">Student Name:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="studentName" value="{{updateStudentDetails.studentName}}">
+        </div>
+        <div>
+            <label for="">Roll No:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="number" name="rollNo" value="{{updateStudentDetails.rollNo}}">
+        </div>
+        <div>
+            <label for="">Department Name:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="departmentName" value="{{updateStudentDetails.departmentName}}">
+        </div>
+        <div>
+            <label for="">Session:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="session" value="{{updateStudentDetails.session}}">
+        </div>
+        
+        <div>
+            <input class="btn btn-primary mb-3" type="submit" value="Submit">
+        </div>
+    
+    </form>
+</div>
+</section>
+
+
+{% endblock %}

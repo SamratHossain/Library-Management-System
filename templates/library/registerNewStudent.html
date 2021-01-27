@@ -1,0 +1,55 @@
+{% extends 'library/base.html' %}
+
+{% block body %}
+
+<section class="student-reg-section">
+    <div class="title">
+        <h2> Student Registration </h2>
+    </div>
+    {% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+<div class="form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="">Student Name:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="studentName">
+        </div>
+        <div>
+            <label for="">Roll No:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="number" name="rollNo">
+        </div>
+        <div>
+            <label for="">Department Name:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="departmentName">
+        </div>
+        <div>
+            <label for="">Session:</label>
+        </div>
+        <div>
+            <input class="form-control mb-3" type="text" name="session">
+        </div>
+        
+        <div>
+            <input class="btn btn-primary mb-3" type="submit" value="Submit">
+        </div>
+    
+    </form>
+</div>
+</section>
+
+{% endblock %}

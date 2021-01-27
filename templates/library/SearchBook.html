@@ -1,0 +1,58 @@
+{% extends 'library/base.html' %}
+
+{% block body %}
+
+{% if messages %}
+        {% for updateMessage in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ updateMessage }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="title container bg-green">
+        <h2> Search Result </h2>
+    </div>
+
+    <hr>
+
+{% if book %}
+<div class="container">
+    <div class="info-table mt-5">
+    <table class="table table-striped">
+    <thead class="bg">
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>ISBN Number</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Action</th>
+    </thead>
+
+    <tbody>
+        <td>{{ book.id }}</td>
+        <td>{{ book.bookName }}</td>
+        <td>{{ book.authorName }}</td>
+        <td>{{ book.isbnNumber }}</td>
+        <td>{{ book.category }}</td>
+        <td>{{ book.quantity }}</td>
+        <td>
+            <a class="btn btn-success" href="{% url 'home:updateBook' book_isbn=book.isbnNumber %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'home:deletBook' book_isbn=book.isbnNumber %}">Delete</a>
+        </td>
+        
+    </tbody>
+</table>
+</div>
+</div>
+{% else %}
+<div class="not-found">
+    <h2>Book Not Found</h2>
+</div>
+{% endif %}
+
+{% endblock %}
