@@ -20,7 +20,7 @@
 
 <hr>
 
-{% if student %}
+{% if students %}
 <div class="container">
     <div class="info-table mt-5">
     <table class="table table-striped">
@@ -34,7 +34,7 @@
         <th>Return Date</th>
         <th>Action</th>
     </thead>
-
+    {% for student in students %}
     <tbody>
         <td>{{ student.id }}</td>
         <td>{{ student.BookName }}</td>
@@ -46,9 +46,9 @@
         <td>
             <a class="btn btn-danger" href="{% url 'home:fine' student.id %}">Fine</a>
             <a class="btn btn-primary" href="{% url 'home:returnbook' student.id %}">Return</a>
-        </td>
-        
+        </td> 
     </tbody>
+    {% endfor %}
 </table>
 </div>
 </div>

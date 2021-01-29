@@ -173,8 +173,8 @@ def SearchBook(request):
 def SearchIssueBook(request):
     student_id = request.GET['query-student']
     try:
-        student = IssueBook.objects.get(StudentID=student_id)
-        return render(request, 'library/SearchIssueBook.html', {'student':student})
+        student = IssueBook.objects.filter(StudentID=student_id)
+        return render(request, 'library/SearchIssueBook.html', {'students':student})
     except ObjectDoesNotExist:
         return render(request, 'library/SearchIssueBook.html')
         
