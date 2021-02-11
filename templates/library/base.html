@@ -60,10 +60,16 @@
                   <a class="dropdown-item" href="{% url 'home:viewStudentDetails' %}">View Student Details</a>  
               </li>
               <li>
-                <a class="nav-link" href="{% url 'home:logout' %}"> Logout <span class="sr-only"></span></a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'home:admin' %}">Admin Panel</a>
+                  <a class="dropdown-item" href="{% url 'home:PasswordChange' %}">Change Password</a>  
               </li>
               <li>
-                <a class="nav-link" href="{% url 'home:admin' %}"> Admin <span class="sr-only"></span></a>
+                <a class="nav-link" href="{% url 'home:logout' %}"> Logout <span class="sr-only"></span></a>
               </li>
               
               {% else %}

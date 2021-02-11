@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import date
@@ -178,3 +181,14 @@ def SearchIssueBook(request):
     except ObjectDoesNotExist:
         return render(request, 'library/SearchIssueBook.html')
         
+
+def PasswordChange(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return home(request)
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'library/password_change.html', {'form':form}) 

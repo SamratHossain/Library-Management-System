@@ -24,5 +24,10 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name = 'library/logout.html'), name='logout'),
     path('viewStudentDetails/search-student/', views.SearchStudent, name='SearchStudent'),
     path('viewBook/search-book/', views.SearchBook, name='SearchBook'),
-    path('viewIssueBook/search-issue-book', views.SearchIssueBook, name='SearchIssueBook')
+    path('viewIssueBook/search-issue-book', views.SearchIssueBook, name='SearchIssueBook'),
+    path('Change_Password/', views.PasswordChange, name="PasswordChange"),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name="reset_password"),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 ]
