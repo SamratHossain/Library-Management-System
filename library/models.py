@@ -4,8 +4,6 @@ from django.utils import timezone
 
 # Create your models here.
 
-
-
 class Student(models.Model):
     studentName = models.CharField(max_length=100)
     rollNo = models.IntegerField()

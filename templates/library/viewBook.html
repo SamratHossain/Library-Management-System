@@ -21,7 +21,7 @@
 <nav class="navbar navbar-light">
   <div class="container-fluid">
     <form class="d-flex" action="{% url 'home:SearchBook' %}" method="GET">
-      <input class="form-control me-2" type="search" name="query-book" placeholder="Search Book By ID" aria-label="Search">
+      <input class="form-control me-2" type="search" name="query-book" placeholder="Search Book By Book Name" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
@@ -38,7 +38,9 @@
         <th>ISBN Number</th>
         <th>Category</th>
         <th>Quantity</th>
+        {% if user.is_authenticated %}
         <th>Action</th>
+        {% endif %}
     </thead>
     {% for book in page_obj %}
     <tbody>
@@ -47,11 +49,17 @@
         <td>{{ book.authorName }}</td>
         <td>{{ book.isbnNumber }}</td>
         <td>{{ book.category }}</td>
-        <td>{{ book.quantity }}</td>
+        {% if book.quantity < 1 %}
+          <td>Not Available</td>
+        {% else %}
+          <td>{{ book.quantity }}</td>
+        {% endif %}
+        {% if user.is_authenticated %}
         <td>
             <a class="btn btn-success" href="{% url 'home:updateBook' book_isbn=book.isbnNumber %}">Update</a>
             <a class="btn btn-danger" href="{% url 'home:deletBook' book_isbn=book.isbnNumber %}">Delete</a>
         </td>
+        {% endif %}
         
     </tbody>
     {% endfor %}

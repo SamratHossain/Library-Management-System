@@ -23,35 +23,35 @@
     <form action="" method="POST">
         {% csrf_token %}
         <div>
-            <label for="">Student Name:</label>
-            <select class="form-control mb-3" name="StudentName">
-                {% for student in students %}
-                <option value="{{ student.studentName }}">({{ student.id }}){{ student.studentName }}</option>
-                {% endfor %}
-            </select>
+            <div>
+                Student Name:
+            </div>
+            <div>
+                <input class="form-control mb-3" type="text" name="StudentName">
+            </div>
         </div>
         <div>
-            <label for="">Student ID:</label>
-            <select class="form-control mb-3" name="StudentID">
-                {% for student in students %}
-                <option value="{{ student.id }}">{{ student.id }}</option>
-                {% endfor %}
-            </select>
+            <div>
+                Student ID:
+            </div>
+            <div>
+                <input class="form-control mb-3" type="text" name="StudentID">
+            </div>
         </div>
         <div>
-           <label for="">Book:</label>
-           <select class="form-control mb-3" class="form-select" name="BookName">
-                {% for book in books %}
-                <option value="{{ book.bookName }}">({{ book.id }}){{ book.bookName }}</option>
-                {% endfor %}
-            </select>     
+            <div>
+                Book Name:
+            </div>
+            <div>
+                <input class="form-control mb-3" type="text" name="BookName">
+            </div>    
         </div>
-            <label for="">ISBN:</label>
-           <select class="form-control mb-3" name="ISBN_Number">
-                {% for book in books %}
-                <option value="{{ book.isbnNumber }}">({{ book.id }}){{ book.isbnNumber }}</option>
-                {% endfor %}
-            </select>    
+            <div>
+                ISBN Number:
+            </div>
+            <div>
+                <input class="form-control mb-3" type="text" name="ISBN_Number">
+            </div>    
         <div>
             <input class="btn btn-primary mb-3" type="submit" value="Submit">
         </div>

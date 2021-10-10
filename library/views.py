@@ -12,7 +12,7 @@ from .forms import updateStudentForm, updateBookForm
 from django.contrib import messages
 
 # Create your views here.
-@login_required(login_url="/login/")
+# @login_required(login_url="/login/")
 def home(request):
     student = Student.objects.all()
     total_students = len(student)
@@ -39,13 +39,14 @@ def addNewBook(request):
 
     return render(request, 'library/addNewBook.html')
 
-@login_required(login_url="/login/")
+# @login_required(login_url="/login/")
 def viewBook(request):
-    bookDetails = Book.objects.order_by('id')
+    bookDetails = Book.objects.order_by('-id')
     paginator = Paginator(bookDetails, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'library/viewBook.html', {'page_obj':page_obj})
+
 
 @login_required(login_url="/login/")
 def updateBook(request, book_isbn):
@@ -83,7 +84,9 @@ def issueNewBook(request):
 
 @login_required(login_url="/login/")
 def viewIssueBook(request):
-    issuebook = IssueBook.objects.all()
+    currentuser = request.user
+    print(currentuser.first_name)  
+    issuebook = IssueBook.objects.order_by('-id')
     paginator = Paginator(issuebook, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -93,12 +96,11 @@ def viewIssueBook(request):
 def registerNewStudent(request):
     if request.method == 'POST':
         studentName = request.POST['studentName']
-        studentID = request.POST['studentID']
         rollNo = request.POST['rollNo']
         departmentName = request.POST['departmentName']
         session = request.POST['session']
 
-        studentInfo = Student(studentName=studentName, studentID=studentID, rollNo=rollNo, departmentName=departmentName, session=session )
+        studentInfo = Student(studentName=studentName, rollNo=rollNo, departmentName=departmentName, session=session )
 
         studentInfo.save()
         messages.success(request, "Registered Successfully!") 
@@ -107,8 +109,9 @@ def registerNewStudent(request):
     return render(request, 'library/registerNewStudent.html')
 
 @login_required(login_url="/login/")  
-def viewStudentDetails(request):  
-    studentDetails = Student.objects.order_by('id')
+def viewStudentDetails(request):
+    
+    studentDetails = Student.objects.order_by('-id')
     paginator = Paginator(studentDetails, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -116,9 +119,9 @@ def viewStudentDetails(request):
 
 @login_required(login_url="/login/")
 def updateStudentDetails(request, student_id):
-    updateStudentDetails = Student.objects.get(id=student_id)
+    updateStudentDetails = Student.objects.get(pk=student_id)
     if request.method == 'POST':
-        updateStudentDetails = Student.objects.get(studentID=student_id)
+        updateStudentDetails = Student.objects.get(id=student_id)
         studentForm = updateStudentForm(request.POST, instance=updateStudentDetails)
         if studentForm.is_valid():
             studentForm.save()
@@ -153,11 +156,13 @@ def ReturnBook(request, id):
     return_book.delete()
     return viewIssueBook(request)
 
+
 @login_required(login_url="/login/")
 def SearchStudent(request):
     query_student = request.GET['query-student']
+    print(query_student)
     try:
-        student = Student.objects.get(id=query_student)
+        student = Student.objects.get(pk=query_student)
         return render(request, 'library/SearchStudent.html',{'student':student})
     except ObjectDoesNotExist:
         return render(request, 'library/SearchStudent.html')
@@ -166,6 +171,7 @@ def SearchStudent(request):
 @login_required(login_url="/login/")
 def SearchBook(request):
     book_id = request.GET['query-book']
+    print(book_id)
     try:
         book = Book.objects.get(id=book_id)
         return render(request, 'library/SearchBook.html', {'book':book})

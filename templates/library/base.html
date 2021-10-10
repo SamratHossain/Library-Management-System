@@ -24,7 +24,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg">
-        <a class="navbar-brand" href="#">Library Management System</a>
+        <a class="navbar-brand" href="/">Library Management System</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,6 +35,7 @@
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'home:home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
+            
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Book
@@ -62,7 +63,7 @@
               <li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Admin
+                  {{user.get_full_name}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'home:admin' %}">Admin Panel</a>
@@ -73,8 +74,14 @@
               </li>
               
               {% else %}
+              <li>
+                <a class="nav-link" href="{% url 'home:viewBook' %}">View Books</a>  
+              </li>
                 <li>
                 <a class="nav-link" href="{% url 'home:login' %}"> Log In <span class="sr-only"></span></a>
+              </li>
+                <li>
+                <a class="nav-link" href="http://127.0.0.1:8000/admin"> Create Admin <span class="sr-only"></span></a>
               </li>
 
               {% endif %}
