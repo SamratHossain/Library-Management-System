@@ -171,9 +171,9 @@ def SearchStudent(request):
 @login_required(login_url="/login/")
 def SearchBook(request):
     book_id = request.GET['query-book']
-    print(book_id)
+    
     try:
-        book = Book.objects.get(id=book_id)
+        book = Book.objects.get(pk=book_id)
         return render(request, 'library/SearchBook.html', {'book':book})
     except ObjectDoesNotExist:
         return render(request, 'library/SearchBook.html')
