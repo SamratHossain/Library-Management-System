@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,9 +125,11 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    STATIC_DIR
-]
+# STATICFILES_DIRS = [
+#     STATIC_DIR
+# ]
+
+STATIC_ROOT = BASE_DIR / 'static'
 
 LOGIN_REDIRECT_URL = '/'
 
