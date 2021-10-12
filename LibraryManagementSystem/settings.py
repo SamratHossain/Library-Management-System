@@ -15,8 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +27,9 @@ SECRET_KEY = '#^gx@mhw3w+$b4mnl*arwq=f6j8yy=7oxr3q%)1ma9i435pf9u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'istlibrary.herokuapp.com'
+]
 
 
 # Application definition
