@@ -28,7 +28,7 @@ SECRET_KEY = '#^gx@mhw3w+$b4mnl*arwq=f6j8yy=7oxr3q%)1ma9i435pf9u'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'istlibrary.herokuapp.com'
+    # 'istlibrary.herokuapp.com'
 ]
 
 
