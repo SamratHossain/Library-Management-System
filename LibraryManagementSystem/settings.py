@@ -28,7 +28,8 @@ SECRET_KEY = '#^gx@mhw3w+$b4mnl*arwq=f6j8yy=7oxr3q%)1ma9i435pf9u'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'istlibrary.herokuapp.com'
+    'istlibrary.herokuapp.com',
+    '127.0.0.1'
 ]
 
 
@@ -144,5 +145,5 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "samratcse17019@gmail.com"
-EMAIL_HOST_PASSWORD = "#include<samrat2399>" 
+EMAIL_HOST_USER = "antiviruslm10@gmail.com"
+EMAIL_HOST_PASSWORD = "lionelmessi10>" 

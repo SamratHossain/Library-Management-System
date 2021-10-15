@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -197,4 +198,7 @@ def PasswordChange(request):
             return home(request)
     else:
         form = PasswordChangeForm(user=request.user)
-    return render(request, 'library/password_change.html', {'form':form}) 
+    return render(request, 'library/password_change.html', {'form':form})
+
+def Admin(request):
+    return HttpResponseRedirect('/admin') 
